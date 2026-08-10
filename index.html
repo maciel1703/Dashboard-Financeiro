@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FinTrack — seu painel financeiro</title>
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600;9..144,700;9..144,900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css">
+  </head>
+<body>
+
+<header>
+  <div class="header-top">
+    <h1>FinTrack</h1>
+
+    <ul>
+      <li><a href="#dashboard">Dashboard</a></li>
+      <li><a href="#transacoes">Transações</a></li>
+      <li><a href="#graficos">Gráficos</a></li>
+      <li><a href="#configuracoes">Configurações</a></li>
+    </ul>
+
+    <button id="theme-toggle" class="btn-theme" aria-label="Alternar tema">
+      <i class="ti ti-moon"></i>
+    </button>
+  </div>
+</header>
+
+<section class="welcome">
+  <span class="welcome-eyebrow">Livro-caixa pessoal</span>
+  <h1 class="bem-vindo">Bem-vindo ao seu sistema</h1>
+  <p>Controle suas finanças com simplicidade e estilo</p>
+</section>
+
+<section id="dashboard">
+  <div class="saldo card-resumo">
+    <span class="selo" id="selo-saldo">saldo</span>
+    <h3>Saldo</h3>
+    <p id="saldo">R$ 0,00</p>
+    <p id="porcentagem-saldo" class="variacao">▲ 0%</p>
+  </div>
+  <div class="receitas card-resumo">
+    <h3>Receitas</h3>
+    <p id="receitas">R$ 0,00</p>
+    <p id="porcentagem-receitas" class="variacao">▲ 0%</p>
+  </div>
+  <div class="despesas card-resumo">
+    <h3>Despesas</h3>
+    <p id="despesas">R$ 0,00</p>
+    <p id="porcentagem-despesas" class="variacao">▲ 0%</p>
+  </div>
+</section>
+
+<section class="overview">
+  <h2>💰 Visão geral</h2>
+  <div class="saldo-atual overview-item">
+    <h3>Saldo atual</h3>
+    <p id="balance">R$ 0,00</p>
+  </div>
+
+  <div class="receitas-mensais overview-item">
+    <h3>📈 Receitas mensais</h3>
+    <p id="revenues">R$ 0,00</p>
+  </div>
+
+  <div class="despesas-mensais overview-item">
+    <h3>📉 Despesas mensais</h3>
+    <p id="expenses">R$ 0,00</p>
+  </div>
+</section>
+
+<section id="graficos">
+  <h2>Gráficos</h2>
+  <div class="graficos-container">
+    <div class="grafico">
+      <h3>Receitas vs despesas</h3>
+      <canvas id="grafico-barras"></canvas>
+    </div>
+    <div class="grafico">
+      <h3>Gastos por categoria</h3>
+      <canvas id="grafico-pizza"></canvas>
+      <p class="empty-hint" id="pizza-empty">Nenhuma despesa registrada ainda.</p>
+    </div>
+  </div>
+</section>
+
+<section id="transacoes">
+  <h2>💳 Transações</h2>
+
+  <div class="filtros">
+    <div class="contador">
+      <p>Período</p>
+      <select id="periodo">
+        <option value="este-mes">Este mês</option>
+        <option value="ultimos-meses" selected>Últimos 3 meses</option>
+        <option value="este-ano">Este ano</option>
+        <option value="todos">Todos</option>
+      </select>
+    </div>
+
+    <div class="type">
+      <p>Tipo</p>
+      <select id="tipo">
+        <option value="todos" selected>Todos</option>
+        <option value="receita-transacoes">Receita</option>
+        <option value="despesa-transacoes">Despesa</option>
+      </select>
+    </div>
+
+    <div class="category">
+      <p>Categoria</p>
+      <select id="categoria">
+        <option value="todos" selected>Todas</option>
+        <option value="alimentacao">Alimentação</option>
+        <option value="transporte">Transporte</option>
+        <option value="moradia">Moradia</option>
+        <option value="lazer">Lazer</option>
+        <option value="educacao">Educação</option>
+        <option value="salario">Salário</option>
+        <option value="outros">Outros</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="ticket">
+    <div class="rodape">
+      <p>Data</p>
+      <p>Descrição</p>
+      <p>Categoria</p>
+      <p>Tipo</p>
+      <p>Valor</p>
+      <p>Ações</p>
+    </div>
+
+    <div id="lista-transacoes" class="lista-transacoes">
+      <!-- transações renderizadas via JS -->
+    </div>
+
+    <p class="empty-hint" id="lista-empty">Nenhuma transação encontrada para este filtro.</p>
+  </div>
+
+  <div class="btn-trans">
+    <a href="#" class="btn-transacao" id="btn-nova-transacao">
+      + Nova transação
+    </a>
+  </div>
+</section>
+
+<section id="configuracoes">
+  <div class="configs">
+    <h3>Configurações</h3>
+
+    <div class="config-row">
+      <p>Tema</p>
+      <button id="theme-toggle-config" class="btn-theme-inline">Claro / Escuro</button>
+    </div>
+
+    <div class="config-row">
+      <p>Moeda</p>
+      <select id="moeda">
+        <option value="real" selected>Real (R$)</option>
+        <option value="dolar">Dólar (US$)</option>
+        <option value="euro">Euro (€)</option>
+      </select>
+    </div>
+
+    <div class="btn-limpar">
+      <a href="#" class="btn-dados" id="btn-limpar-dados">
+        Limpar todos os dados
+      </a>
+    </div>
+  </div>
+</section>
+
+<div class="modal-overlay" id="modal-overlay">
+  <form class="modal" id="form-transacao">
+    <div class="modal-header">
+      <h3 id="modal-titulo">Nova transação</h3>
+      <button type="button" class="modal-fechar" id="modal-fechar" aria-label="Fechar">✕</button>
+    </div>
+
+    <input type="hidden" id="transacao-id">
+
+    <label>
+      Descrição
+      <input type="text" id="campo-descricao" placeholder="Ex: Supermercado" required>
+    </label>
+
+    <div class="modal-linha">
+      <label>
+        Valor
+        <input type="number" id="campo-valor" step="0.01" min="0.01" placeholder="0,00" required>
+      </label>
+
+      <label>
+        Data
+        <input type="date" id="campo-data" required>
+      </label>
+    </div>
+
+    <div class="modal-linha">
+      <label>
+        Tipo
+        <select id="campo-tipo">
+          <option value="receita">Receita</option>
+          <option value="despesa" selected>Despesa</option>
+        </select>
+      </label>
+
+      <label>
+        Categoria
+        <select id="campo-categoria">
+          <option value="alimentacao">Alimentação</option>
+          <option value="transporte">Transporte</option>
+          <option value="moradia">Moradia</option>
+          <option value="lazer">Lazer</option>
+          <option value="educacao">Educação</option>
+          <option value="salario">Salário</option>
+          <option value="outros">Outros</option>
+        </select>
+      </label>
+    </div>
+
+    <div class="modal-acoes">
+      <button type="button" class="btn-secundario" id="modal-cancelar">Cancelar</button>
+      <button type="submit" class="btn-primario">Salvar transação</button>
+    </div>
+  </form>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
