@@ -49,6 +49,11 @@ body[data-theme="dark"] {
   box-sizing: border-box;
 }
 
+html {
+  overflow-x: hidden;
+  width: 100%;
+}
+
 body {
   margin: 0;
   background: var(--bg);
@@ -56,6 +61,8 @@ body {
   font-family: var(--font-body);
   transition: background 0.35s ease, color 0.35s ease;
   padding-bottom: 60px;
+  overflow-x: hidden;
+  width: 100%;
 }
 
 a {
@@ -318,6 +325,7 @@ header {
   box-shadow: var(--shadow);
   min-height: 280px;
   position: relative;
+  overflow: hidden;
 }
 
 .grafico h3 {
@@ -329,6 +337,8 @@ header {
 
 .grafico canvas {
   max-height: 230px;
+  max-width: 100% !important;
+  width: 100% !important;
 }
 
 .empty-hint {
@@ -721,10 +731,12 @@ select:focus, input:focus {
 
   .header-top ul {
     flex: none;
+    max-width: 100%;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
     padding-bottom: 2px;
+    gap: 18px;
   }
 
   .header-top ul::-webkit-scrollbar {
@@ -733,6 +745,7 @@ select:focus, input:focus {
 
   .header-top ul a {
     white-space: nowrap;
+    font-size: 0.85rem;
   }
 
   .welcome {
@@ -785,11 +798,26 @@ select:focus, input:focus {
 
   .header-top {
     padding: 14px 18px;
-    gap: 12px;
+    gap: 10px;
   }
 
   .header-top h1 {
-    font-size: 1.25rem;
+    font-size: 1.15rem;
+    flex-shrink: 0;
+  }
+
+  .header-top ul {
+    gap: 14px;
+  }
+
+  .header-top ul a {
+    font-size: 0.8rem;
+  }
+
+  .btn-theme {
+    flex-shrink: 0;
+    width: 34px;
+    height: 34px;
   }
 
   #dashboard {
