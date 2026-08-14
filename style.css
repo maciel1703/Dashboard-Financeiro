@@ -416,7 +416,7 @@ select:focus, input:focus {
   border-bottom: 1px dashed var(--line-strong);
 }
 
-.lista-transacoes {
+#lista-transacoes {
   display: flex;
   flex-direction: column;
 }

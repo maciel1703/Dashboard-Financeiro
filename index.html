@@ -38,6 +38,8 @@
   <p>Controle suas finanças com simplicidade e estilo</p>
 </section>
 
+
+
 <section id="dashboard">
   <div class="saldo card-resumo">
     <span class="selo" id="selo-saldo">saldo</span>
@@ -89,6 +91,8 @@
     </div>
   </div>
 </section>
+
+
 
 <section id="transacoes">
   <h2>💳 Transações</h2>
@@ -152,6 +156,8 @@
   </div>
 </section>
 
+
+
 <section id="configuracoes">
   <div class="configs">
     <h3>Configurações</h3>
@@ -178,60 +184,58 @@
   </div>
 </section>
 
+
 <div class="modal-overlay" id="modal-overlay">
-  <form class="modal" id="form-transacao">
-    <div class="modal-header">
-      <h3 id="modal-titulo">Nova transação</h3>
-      <button type="button" class="modal-fechar" id="modal-fechar" aria-label="Fechar">✕</button>
-    </div>
+  <div class="modal">
+    <form id="modal-form">
 
-    <input type="hidden" id="transacao-id">
-
-    <label>
-      Descrição
-      <input type="text" id="campo-descricao" placeholder="Ex: Supermercado" required>
-    </label>
-
-    <div class="modal-linha">
-      <label>
-        Valor
-        <input type="number" id="campo-valor" step="0.01" min="0.01" placeholder="0,00" required>
-      </label>
+      <input type="hidden" id="transacao-id">
 
       <label>
-        Data
-        <input type="date" id="campo-data" required>
-      </label>
-    </div>
-
-    <div class="modal-linha">
-      <label>
-        Tipo
-        <select id="campo-tipo">
-          <option value="receita">Receita</option>
-          <option value="despesa" selected>Despesa</option>
-        </select>
+        Descrição
+        <input type="text" id="campo-descricao" placeholder="Ex: Supermercado" required>
       </label>
 
-      <label>
-        Categoria
-        <select id="campo-categoria">
-          <option value="alimentacao">Alimentação</option>
-          <option value="transporte">Transporte</option>
-          <option value="moradia">Moradia</option>
-          <option value="lazer">Lazer</option>
-          <option value="educacao">Educação</option>
-          <option value="salario">Salário</option>
-          <option value="outros">Outros</option>
-        </select>
-      </label>
-    </div>
+      <div class="modal-linha">
+        <label>
+          Valor
+          <input type="number" id="campo-valor" step="0.01" min="0.01" placeholder="0,00" required>
+        </label>
+        <label>
+          Data
+          <input type="date" id="campo-data" required>
+        </label>
+      </div>
 
-    <div class="modal-acoes">
-      <button type="button" class="btn-secundario" id="modal-cancelar">Cancelar</button>
-      <button type="submit" class="btn-primario">Salvar transação</button>
-    </div>
-  </form>
+      <div class="modal-linha">
+        <label>
+          Tipo
+          <select id="campo-tipo">
+            <option value="receita">Receita</option>
+            <option value="despesa" selected>Despesa</option>
+          </select>
+        </label>
+        <label>
+          Categoria
+          <select id="campo-categoria">
+            <option value="alimentacao">Alimentação</option>
+            <option value="transporte">Transporte</option>
+            <option value="moradia">Moradia</option>
+            <option value="lazer">Lazer</option>
+            <option value="educacao">Educação</option>
+            <option value="salario">Salário</option>
+            <option value="outros">Outros</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="modal-acoes">
+        <button type="button" class="btn-secundario" id="modal-cancelar">Cancelar</button>
+        <button type="submit" class="btn-primario">Salvar transação</button>
+      </div>
+
+    </form>
+  </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
