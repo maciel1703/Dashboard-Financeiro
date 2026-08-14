@@ -684,35 +684,152 @@ select:focus, input:focus {
 
 /* ---------- Responsivo ---------- */
 
-@media (max-width: 900px) {
-  #dashboard, .overview {
-    grid-template-columns: 1fr;
+/* ---- Tablet grande (≤ 1024px): aperta respiro lateral ---- */
+@media (max-width: 1024px) {
+  section {
+    padding: 0 24px;
   }
-  .graficos-container {
-    grid-template-columns: 1fr;
-  }
-  .rodape, .linha-transacao {
-    grid-template-columns: 80px 1.4fr 1fr 90px;
-  }
-  .rodape p:nth-child(3), .rodape p:nth-child(4),
-  .linha-transacao .tag-categoria, .linha-transacao .tag-tipo {
-    display: none;
-  }
-  .header-top ul {
-    display: none;
+  .header-top {
+    padding: 16px 24px;
   }
 }
 
-@media (max-width: 560px) {
-  section { padding: 0 18px; }
+/* ---- Tablet (≤ 900px) ---- */
+@media (max-width: 900px) {
+
+  #dashboard {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .overview {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .graficos-container {
+    grid-template-columns: 1fr;
+  }
+
+  .grafico canvas {
+    max-height: 220px;
+  }
+
+  /* nav vira uma faixa rolável em vez de sumir */
+  .header-top {
+    flex-wrap: nowrap;
+    gap: 16px;
+  }
+
+  .header-top ul {
+    flex: none;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 2px;
+  }
+
+  .header-top ul::-webkit-scrollbar {
+    display: none;
+  }
+
+  .header-top ul a {
+    white-space: nowrap;
+  }
+
+  .welcome {
+    margin: 40px auto 32px;
+  }
+}
+
+/* ---- Tablet pequeno / celular grande (≤ 720px) ---- */
+@media (max-width: 720px) {
+
+  .filtros {
+    gap: 12px;
+  }
+
+  .filtros > div {
+    flex: 1 1 140px;
+  }
+
+  select, input {
+    width: 100%;
+  }
 
   .rodape, .linha-transacao {
-    grid-template-columns: 60px 1fr 70px 44px;
-    gap: 6px;
+    grid-template-columns: 76px 1.3fr 1fr 84px;
   }
+
+  .rodape p:nth-child(3),
+  .linha-transacao .tag-categoria {
+    display: none;
+  }
+
+  .btn-transacao {
+    width: 100%;
+    text-align: center;
+  }
+
+  .btn-trans {
+    justify-content: stretch;
+  }
+
+  .configs {
+    max-width: none;
+  }
+}
+
+/* ---- Celular (≤ 560px) ---- */
+@media (max-width: 560px) {
+
+  section { padding: 0 18px; }
+
+  .header-top {
+    padding: 14px 18px;
+    gap: 12px;
+  }
+
+  .header-top h1 {
+    font-size: 1.25rem;
+  }
+
+  #dashboard {
+    grid-template-columns: 1fr;
+  }
+
+  .overview {
+    grid-template-columns: 1fr;
+    padding: 20px;
+  }
+
+  .card-resumo {
+    padding: 20px;
+  }
+
+  .card-resumo p:first-of-type,
+  .card-resumo > p#saldo,
+  .card-resumo > p#receitas,
+  .card-resumo > p#despesas {
+    font-size: 1.6rem;
+  }
+
+  .rodape, .linha-transacao {
+    grid-template-columns: 56px 1fr 66px 40px;
+    gap: 6px;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
   .rodape p:nth-child(3), .rodape p:nth-child(4),
   .linha-transacao .tag-categoria, .linha-transacao .tag-tipo {
     display: none;
+  }
+
+  .linha-transacao .valor {
+    font-size: 0.82rem;
+  }
+
+  .acoes-transacao {
+    gap: 2px;
   }
 
   .grafico {
@@ -723,7 +840,54 @@ select:focus, input:focus {
     max-height: 160px;
   }
 
+  .modal {
+    padding: 22px;
+  }
+
   .modal-linha { grid-template-columns: 1fr; }
+
+  /* área de toque confortável em telas pequenas */
+  .btn-theme,
+  .btn-theme-inline,
+  .acoes-transacao button,
+  .btn-primario,
+  .btn-secundario,
+  .btn-dados {
+    min-height: 40px;
+  }
+
+  .acoes-transacao button {
+    min-width: 36px;
+  }
+}
+
+/* ---- Celular pequeno (≤ 400px) ---- */
+@media (max-width: 400px) {
+
+  .bem-vindo {
+    font-size: 1.6rem;
+  }
+
+  .welcome p {
+    font-size: 0.92rem;
+  }
+
+  .rodape, .linha-transacao {
+    grid-template-columns: 1fr 60px 36px;
+  }
+
+  .rodape p:first-child,
+  .linha-transacao .data {
+    display: none;
+  }
+
+  .modal-acoes {
+    flex-direction: column-reverse;
+  }
+
+  .modal-acoes button {
+    width: 100%;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
